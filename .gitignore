@@ -41,6 +41,9 @@ temp/
 # Keep root dataset out of Git by default; include it manually in final zip if needed
 hotel_bookings.csv
 
+# Claude local config
+.claude/
+
 # Claude/local process files
 # Keep these locally for Claude context recovery; do not share with teammates
 task_plan.md
