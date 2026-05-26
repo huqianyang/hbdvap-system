@@ -31,9 +31,12 @@ temp/
 *.model
 
 # Large/generated data outputs
-01_data/raw/
-01_data/processed/
-01_data/eda/
+01_data/raw/*
+!01_data/raw/.gitkeep
+01_data/processed/*
+!01_data/processed/.gitkeep
+01_data/eda/*
+!01_data/eda/.gitkeep
 
 # Keep root dataset out of Git by default; include it manually in final zip if needed
 hotel_bookings.csv
