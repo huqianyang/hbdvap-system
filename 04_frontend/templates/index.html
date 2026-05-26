@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}系统首页 - HBDVAP{% endblock %}
+{% block page_heading %}酒店预订取消风险展示中心{% endblock %}
+
+{% block content %}
+<section class="hero-grid">
+  <div class="hero-copy">
+    <p class="eyebrow">课程设计答辩展示入口</p>
+    <h2>从预订数据流到取消风险，一屏讲清系统价值。</h2>
+    <p>
+      本系统通过 Flask API 获取看板指标、预测结果和多维分析数据，
+      前端负责页面展示、图表渲染和预测交互，不直接读取 CSV 数据。
+    </p>
+    <div class="hero-actions">
+      <a class="primary-action" href="/dashboard">查看数据看板</a>
+      <a class="secondary-action" href="/prediction">进入预测页面</a>
+    </div>
+  </div>
+
+  <div class="system-card">
+    <div class="card-head">
+      <span>系统模块</span>
+      <strong>Front-End Scope</strong>
+    </div>
+    <div class="module-list">
+      <a href="/dashboard">
+        <span>01</span>
+        <strong>首页数据看板</strong>
+        <small>调用 /api/dashboard 展示核心指标</small>
+      </a>
+      <a href="/prediction">
+        <span>02</span>
+        <strong>预订取消预测</strong>
+        <small>调用 /api/predict 输出风险等级</small>
+      </a>
+      <a href="/analysis">
+        <span>03</span>
+        <strong>多维可视化分析</strong>
+        <small>调用 analysis 系列接口绘制图表</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="content-band">
+  <div class="section-title">
+    <p class="eyebrow">Big Data Pipeline</p>
+    <h2>大数据流处理架构</h2>
+  </div>
+  <div class="flow-strip" id="pipelineFlow">
+    <!-- 阶段 1 只展示流程框架；后续阶段会接入 /api/bigdata/status 的详细状态。 -->
+    <span>CSV 数据源</span>
+    <span>Flume 采集</span>
+    <span>Kafka 缓冲</span>
+    <span>Storm 实时处理</span>
+    <span>MySQL 存储</span>
+    <span>Flask API</span>
+    <span>Web 可视化</span>
+  </div>
+  <p class="muted-text" id="pipelineSummary">等待后端 /api/bigdata/status 接口联调。</p>
+</section>
+{% endblock %}
