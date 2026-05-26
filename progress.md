@@ -441,6 +441,17 @@
 
 ---
 
+### [MINOR] 创建 Git 首个提交
+**操作**：创建首个 Git 提交 `481eedb`，提交信息为 `Initialize course project startup docs`。
+
+**原因**：当前启动包文档、AI 提示词、README、老师要求文档和过程文件已经形成项目初始基线，需要通过 Git 固化版本，防止后续 AI 生成代码或人工修改时覆盖丢失。
+
+**提交内容**：共 18 个文件，包括 `.gitignore`、`.claude/settings.json`、`README.md`、`00_project_docs/`、`07_ai_prompts/`、`task_plan.md`、`findings.md`、`progress.md` 和老师要求文档。数据集 `hotel_bookings.csv` 与 `.claude` 备份文件未提交。
+
+**状态**：本地 Git 仓库已建立，首个项目文档基线已提交。
+
+---
+
 ### 待办事项
 - [x] 用户下载酒店预订数据集
 - [x] 数据探索性分析（EDA）
