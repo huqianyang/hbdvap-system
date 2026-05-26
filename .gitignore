@@ -25,6 +25,12 @@ Thumbs.db
 tmp/
 temp/
 
+# Member A local implementation files
+# Keep these local while B/C only receive the shared framework
+01_data/scripts/*.py
+02_model/*.py
+02_model/*.json
+
 # Model outputs
 *.pkl
 *.joblib
