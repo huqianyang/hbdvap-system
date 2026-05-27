@@ -37,6 +37,7 @@ temp/
 !01_data/processed/.gitkeep
 01_data/eda/*
 !01_data/eda/.gitkeep
+05_bigdata/scripts/pipeline_demo_output.csv
 
 # Keep root dataset out of Git by default; include it manually in final zip if needed
 hotel_bookings.csv
