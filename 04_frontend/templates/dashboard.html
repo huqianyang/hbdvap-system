@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}数据看板 - HBDVAP{% endblock %}
+{% block page_heading %}首页数据看板{% endblock %}
+
+{% block content %}
+<section class="dashboard-brief">
+  <div>
+    <p class="eyebrow">Phase 2 Dashboard</p>
+    <h2>核心经营指标</h2>
+    <p>数据通过 <code>GET /api/dashboard</code> 获取，用于答辩时快速说明预订规模、取消压力和客源结构。</p>
+  </div>
+  <button class="refresh-button" id="refreshDashboard" type="button">刷新数据</button>
+</section>
+
+<section class="metric-grid" aria-label="首页核心指标">
+  <article class="metric-card">
+    <span>总预订量</span>
+    <strong id="totalBookings">--</strong>
+    <small>total_bookings</small>
+  </article>
+  <article class="metric-card danger">
+    <span>取消订单数</span>
+    <strong id="canceledBookings">--</strong>
+    <small>canceled_bookings</small>
+  </article>
+  <article class="metric-card warning">
+    <span>取消率</span>
+    <strong id="cancelRate">--</strong>
+    <small>cancel_rate</small>
+  </article>
+  <article class="metric-card">
+    <span>平均每日房价</span>
+    <strong id="avgAdr">--</strong>
+    <small>avg_adr</small>
+  </article>
+  <article class="metric-card accent">
+    <span>主要客源国家</span>
+    <strong id="topCountry">--</strong>
+    <small>top_country</small>
+  </article>
+</section>
+
+<section class="dashboard-layout">
+  <article class="chart-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Hotel Type</p>
+        <h3>酒店类型预订量对比</h3>
+      </div>
+      <span id="dashboardStatus">等待加载</span>
+    </div>
+    <div class="chart-box" id="hotelTypeChart" role="img" aria-label="City Hotel 与 Resort Hotel 预订数量对比图"></div>
+  </article>
+
+  <article class="insight-panel">
+    <p class="eyebrow">Reading Guide</p>
+    <h3>答辩讲解要点</h3>
+    <ul>
+      <li>先说明总预订量与取消订单数，建立数据规模感。</li>
+      <li>再结合取消率说明酒店收益管理面临的风险。</li>
+      <li>最后用酒店类型对比图引出后续多维分析页面。</li>
+    </ul>
+    <div class="api-note">
+      <strong>接口字段</strong>
+      <p>total_bookings、canceled_bookings、cancel_rate、avg_adr、city_hotel_count、resort_hotel_count、top_country</p>
+    </div>
+  </article>
+</section>
+
+<section class="error-panel" id="dashboardError" hidden>
+  <strong>看板数据暂未加载</strong>
+  <p>请确认 Flask 后端已启动，并且 <code>GET /api/dashboard</code> 返回接口文档约定的 JSON 格式。</p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}取消预测 - HBDVAP{% endblock %}
+{% block page_heading %}预订取消预测{% endblock %}
+
+{% block content %}
+<section class="prediction-shell">
+  <form class="prediction-form" id="predictionForm">
+    <div class="form-head">
+      <div>
+        <p class="eyebrow">Phase 3 Prediction</p>
+        <h2>输入一条预订信息</h2>
+        <p>字段严格对应接口文档，请求将提交到 <code>POST /api/predict</code>。</p>
+      </div>
+      <button class="primary-action" id="predictButton" type="submit">开始预测</button>
+    </div>
+
+    <div class="form-section">
+      <h3>基础预订信息</h3>
+      <div class="form-grid">
+        <label>
+          酒店类型
+          <select name="hotel" required>
+            <option value="City Hotel">City Hotel</option>
+            <option value="Resort Hotel">Resort Hotel</option>
+          </select>
+        </label>
+        <label>
+          提前预订天数
+          <input name="lead_time" type="number" min="0" value="120" required>
+        </label>
+        <label>
+          到达月份
+          <select name="arrival_date_month" required>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July" selected>July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+        </label>
+        <label>
+          周末入住晚数
+          <input name="stays_in_weekend_nights" type="number" min="0" value="1" required>
+        </label>
+        <label>
+          工作日入住晚数
+          <input name="stays_in_week_nights" type="number" min="0" value="3" required>
+        </label>
+        <label>
+          平均每日房价 adr
+          <input name="adr" type="number" min="0" step="0.01" value="90.0" required>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>客户与渠道特征</h3>
+      <div class="form-grid">
+        <label>
+          成人数量
+          <input name="adults" type="number" min="0" value="2" required>
+        </label>
+        <label>
+          儿童数量
+          <input name="children" type="number" min="0" value="0" required>
+        </label>
+        <label>
+          婴儿数量
+          <input name="babies" type="number" min="0" value="0" required>
+        </label>
+        <label>
+          餐食类型
+          <select name="meal" required>
+            <option value="BB">BB</option>
+            <option value="HB">HB</option>
+            <option value="FB">FB</option>
+            <option value="SC">SC</option>
+          </select>
+        </label>
+        <label>
+          客源国家/地区
+          <input name="country" type="text" value="PRT" required>
+        </label>
+        <label>
+          市场细分
+          <select name="market_segment" required>
+            <option value="Online TA">Online TA</option>
+            <option value="Offline TA/TO">Offline TA/TO</option>
+            <option value="Direct">Direct</option>
+            <option value="Groups">Groups</option>
+            <option value="Corporate">Corporate</option>
+          </select>
+        </label>
+        <label>
+          分销渠道
+          <select name="distribution_channel" required>
+            <option value="TA/TO">TA/TO</option>
+            <option value="Direct">Direct</option>
+            <option value="Corporate">Corporate</option>
+            <option value="GDS">GDS</option>
+          </select>
+        </label>
+        <label>
+          客户类型
+          <select name="customer_type" required>
+            <option value="Transient">Transient</option>
+            <option value="Transient-Party">Transient-Party</option>
+            <option value="Contract">Contract</option>
+            <option value="Group">Group</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>历史行为与订单需求</h3>
+      <div class="form-grid">
+        <label>
+          是否回头客
+          <select name="is_repeated_guest" required>
+            <option value="0">否</option>
+            <option value="1">是</option>
+          </select>
+        </label>
+        <label>
+          以前取消次数
+          <input name="previous_cancellations" type="number" min="0" value="0" required>
+        </label>
+        <label>
+          以前未取消预订次数
+          <input name="previous_bookings_not_canceled" type="number" min="0" value="0" required>
+        </label>
+        <label>
+          预订房型
+          <select name="reserved_room_type" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+          </select>
+        </label>
+        <label>
+          预订修改次数
+          <input name="booking_changes" type="number" min="0" value="0" required>
+        </label>
+        <label>
+          押金类型
+          <select name="deposit_type" required>
+            <option value="No Deposit">No Deposit</option>
+            <option value="Non Refund">Non Refund</option>
+            <option value="Refundable">Refundable</option>
+          </select>
+        </label>
+        <label>
+          等待名单天数
+          <input name="days_in_waiting_list" type="number" min="0" value="0" required>
+        </label>
+        <label>
+          需要停车位数量
+          <input name="required_car_parking_spaces" type="number" min="0" value="0" required>
+        </label>
+        <label>
+          特殊请求总数
+          <input name="total_of_special_requests" type="number" min="0" value="1" required>
+        </label>
+      </div>
+    </div>
+  </form>
+
+  <aside class="prediction-result" id="predictionResult">
+    <p class="eyebrow">Prediction Result</p>
+    <h2 id="riskLevel">等待预测</h2>
+    <div class="probability-ring" id="cancelProbability">--</div>
+    <p id="predictionLabel">提交表单后展示是否可能取消。</p>
+    <div class="suggestion-box">
+      <strong>经营建议</strong>
+      <p id="suggestion">请先输入预订信息并点击“开始预测”。</p>
+    </div>
+    <p class="muted-text" id="predictionStatus">接口状态：未提交</p>
+  </aside>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}多维分析 - HBDVAP{% endblock %}
+{% block page_heading %}多维可视化分析{% endblock %}
+
+{% block content %}
+<section class="analysis-brief">
+  <div>
+    <p class="eyebrow">Phase 4 Analysis</p>
+    <h2>多维度解释取消风险</h2>
+    <p>从月份趋势、酒店类型、客源国家和客户类型四个角度展示取消规律，并说明 Flume → Kafka → Storm 数据流。</p>
+  </div>
+  <button class="refresh-button" id="refreshAnalysis" type="button">刷新分析</button>
+</section>
+
+<section class="analysis-grid" aria-label="多维分析图表">
+  <article class="chart-panel wide">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Cancel Rate Trend</p>
+        <h3>月度取消率趋势</h3>
+      </div>
+      <span id="cancelRateStatus">等待加载</span>
+    </div>
+    <div class="chart-box" id="cancelRateChart" role="img" aria-label="月度取消率趋势折线图"></div>
+  </article>
+
+  <article class="chart-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Hotel Type</p>
+        <h3>酒店类型分析</h3>
+      </div>
+      <span id="hotelTypeStatus">等待加载</span>
+    </div>
+    <div class="chart-box compact" id="hotelTypeAnalysisChart" role="img" aria-label="酒店类型预订量和取消率对比图"></div>
+  </article>
+
+  <article class="chart-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Country</p>
+        <h3>主要客源国家/地区</h3>
+      </div>
+      <span id="countryStatus">等待加载</span>
+    </div>
+    <div class="chart-box compact" id="countryChart" role="img" aria-label="国家地区订单数量图"></div>
+  </article>
+
+  <article class="chart-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Customer Type</p>
+        <h3>客户类型分布</h3>
+      </div>
+      <span id="customerTypeStatus">等待加载</span>
+    </div>
+    <div class="chart-box compact" id="customerTypeChart" role="img" aria-label="客户类型订单数量和取消率图"></div>
+  </article>
+
+  <article class="pipeline-panel" id="bigdataPipeline">
+    <p class="eyebrow">Big Data Status</p>
+    <h3>大数据流程说明</h3>
+    <div class="pipeline-steps">
+      <span>CSV</span>
+      <span>Flume</span>
+      <span>Kafka</span>
+      <span>Storm</span>
+      <span>MySQL</span>
+      <span>Flask</span>
+      <span>Web</span>
+    </div>
+    <dl class="status-list">
+      <div><dt>Flume</dt><dd id="flumeStatus">等待接口返回</dd></div>
+      <div><dt>Kafka</dt><dd id="kafkaStatus">等待接口返回</dd></div>
+      <div><dt>Storm</dt><dd id="stormStatus">等待接口返回</dd></div>
+      <div><dt>Pipeline</dt><dd id="pipelineStatus">等待接口返回</dd></div>
+    </dl>
+  </article>
+</section>
+
+<section class="error-panel" id="analysisError" hidden>
+  <strong>分析数据暂未加载</strong>
+  <p>请确认后端已实现接口文档中的 analysis 系列接口，并返回统一 JSON 格式。</p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

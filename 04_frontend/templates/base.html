@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}酒店预订数据可视化分析与预测系统{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-[#f7f3ed] text-slate-900">
+  <div class="app-shell">
+    <aside class="side-nav">
+      <a class="brand-block" href="/">
+        <span class="brand-mark">H</span>
+        <span>
+          <strong>HBDVAP</strong>
+          <small>酒店预订分析系统</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="主导航">
+        <a href="/" data-nav="index">系统首页</a>
+        <a href="/dashboard" data-nav="dashboard">数据看板</a>
+        <a href="/prediction" data-nav="prediction">取消预测</a>
+        <a href="/analysis" data-nav="analysis">多维分析</a>
+      </nav>
+
+      <section class="pipeline-mini" aria-label="大数据流程概览">
+        <p>数据流</p>
+        <strong>CSV → Flume → Kafka → Storm → MySQL → Flask → Web</strong>
+      </section>
+    </aside>
+
+    <main class="main-panel">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">Hotel Booking Data Visualization Analysis & Prediction</p>
+          <h1>{% block page_heading %}酒店预订数据可视化分析与预测系统{% endblock %}</h1>
+        </div>
+        <div class="api-badge" id="apiStatus">API 待检测</div>
+      </header>
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
